@@ -184,8 +184,12 @@ def interfaceDk(dfAll,savePath):
     #check_boxGrid
     
     def clicked(pltRf):    
-        stationName=stationNameWid.outputs[0]['text'].strip()            # Display selected station
-        year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year
+        try:
+            stationName=stationNameWid.outputs[0]['text'].strip()            # Display selected station
+            year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
             
         dfOne = dFu.locSelect(dfAll,stationName)
        
@@ -203,8 +207,12 @@ def interfaceDk(dfAll,savePath):
     #Plotting tmax event button
     def clicked(pltTmax):
         # Display selected station
-        stationName=stationNameWid.outputs[0]['text'].strip()
-        year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year
+        try:
+            stationName=stationNameWid.outputs[0]['text'].strip()
+            year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return    
     
         dfOne = dFu.locSelect(dfAll,stationName)
         
@@ -222,9 +230,12 @@ def interfaceDk(dfAll,savePath):
     #Plotting tmin event button
     def clicked(pltTmin):
         # Display selected station
-        stationName=stationNameWid.outputs[0]['text'].strip()
-        year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year
-    
+        try:
+            stationName=stationNameWid.outputs[0]['text'].strip()
+            year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return    
         dfOne = dFu.locSelect(dfAll,stationName)
         
         # Display selected element
@@ -241,14 +252,17 @@ def interfaceDk(dfAll,savePath):
     #==================================================================
     #Maping rf event button
     def clicked(mpRf):
-        
-        year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
-        month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
-        dekadal = int(dekadeNeeded.outputs[0]['text'].strip())           # Display selected dekade
-        region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
-        adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
-        adm3 = districtNeeded.outputs[0]['text'].strip() 
-        
+
+        try:        
+            year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
+            month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
+            dekadal = int(dekadeNeeded.outputs[0]['text'].strip())           # Display selected dekade
+            region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
+            adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
+            adm3 = districtNeeded.outputs[0]['text'].strip() 
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return        
         
         mapDkRF = dFu.locData(dfAll,'PRECIP',year=year,month=month,dekadal=dekadal)
         
@@ -266,14 +280,17 @@ def interfaceDk(dfAll,savePath):
     
     #Maping tmax event button
     def clicked(mpTmax):
+        try:        
+            year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
+            month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
+            dekadal = int(dekadeNeeded.outputs[0]['text'].strip())           # Display selected dekade
+            region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
+            adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
+            adm3 = districtNeeded.outputs[0]['text'].strip() 
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
         
-        year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
-        month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
-        dekadal = int(dekadeNeeded.outputs[0]['text'].strip())           # Display selected dekade
-        region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
-        adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
-        adm3 = districtNeeded.outputs[0]['text'].strip() 
-    
         mapDkTMPMAX = dFu.locData(dfAll,'TMPMAX',year=year,month=month,dekadal=dekadal)
         
         kriFigs = mFu.kriMap(mapDkTMPMAX,region,savePath=savePath)
@@ -290,13 +307,17 @@ def interfaceDk(dfAll,savePath):
     
     #Maping tmin event button
     def clicked(mpTmin):
-        year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
-        month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
-        dekadal = int(dekadeNeeded.outputs[0]['text'].strip())           # Display selected dekade
-        region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
-        adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
-        adm3 = districtNeeded.outputs[0]['text'].strip() 
-    
+        try:
+            year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
+            month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
+            dekadal = int(dekadeNeeded.outputs[0]['text'].strip())           # Display selected dekade
+            region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
+            adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
+            adm3 = districtNeeded.outputs[0]['text'].strip() 
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
+        
         mapDkTMPMIN = dFu.locData(dfAll,'TMPMIN',year=year,month=month,dekadal=dekadal)
         
         kriFigs = mFu.kriMap(mapDkTMPMIN,region,savePath=savePath)
@@ -538,9 +559,13 @@ def interfaceMonth(dfAll,dfWind,savePath):
     #check_boxGrid
     
     def clicked(pltRf):    
-        stationName=stationNameWid.outputs[0]['text'].strip()           # Display selected station
-        year = int(yearNeeded.outputs[0]['text'].strip())               # Display selected year
-        
+        try:        
+            stationName=stationNameWid.outputs[0]['text'].strip()           # Display selected station
+            year = int(yearNeeded.outputs[0]['text'].strip())               # Display selected year
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
+            
         dfOne = dFu.locSelect(dfAll,stationName)
        
         # Display selected element
@@ -562,8 +587,12 @@ def interfaceMonth(dfAll,dfWind,savePath):
     #Plotting tmax event button
     def clicked(pltTmax):
         # Display selected station
-        stationName=stationNameWid.outputs[0]['text'].strip()
-        year = int(yearNeeded.outputs[0]['text'].strip())               # Display selected year
+        try:
+            stationName=stationNameWid.outputs[0]['text'].strip()
+            year = int(yearNeeded.outputs[0]['text'].strip())               # Display selected year
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
     
         dfOne = dFu.locSelect(dfAll,stationName)
         
@@ -581,9 +610,13 @@ def interfaceMonth(dfAll,dfWind,savePath):
     #Plotting tmin event button
     def clicked(pltTmin):
         # Display selected station
-        stationName=stationNameWid.outputs[0]['text'].strip()
-        year = int(yearNeeded.outputs[0]['text'].strip())               # Display selected year
-    
+        try:
+            stationName=stationNameWid.outputs[0]['text'].strip()
+            year = int(yearNeeded.outputs[0]['text'].strip())               # Display selected year
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
+        
         dfOne = dFu.locSelect(dfAll,stationName)
         
         # Display selected element
@@ -601,10 +634,14 @@ def interfaceMonth(dfAll,dfWind,savePath):
     #Plotting Windrose event button
     def clicked(pltWinrs):
         # Display selected station
-        stationName=stationNameWid.outputs[0]['text'].strip()
-        year = int(yearNeeded.outputs[0]['text'].strip())               # Display selected year
-        month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
-        
+        try:
+            stationName=stationNameWid.outputs[0]['text'].strip()
+            year = int(yearNeeded.outputs[0]['text'].strip())               # Display selected year
+            month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return        
+            
         df = dfWind
     
         wind = df[df.EG_EL == 'WINSPD'].drop_duplicates(subset=['STN_Name','dateTime']).set_index(['STN_Name','dateTime']).rename(columns={'value':'WINSPD'}).get(['season','seasonyear','dk','WINSPD'])
@@ -621,12 +658,15 @@ def interfaceMonth(dfAll,dfWind,savePath):
     
     #Maping rf event button
     def clicked(mpRf):
-        
-        year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
-        month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
-        region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
-        adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
-        adm3 = districtNeeded.outputs[0]['text'].strip() 
+        try:        
+            year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
+            month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
+            region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
+            adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
+            adm3 = districtNeeded.outputs[0]['text'].strip() 
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
         
         mapmonRF = dFu.locData(dfAll,'PRECIP',year=year,month=month)
         mapmonRD = dFu.locData(dfAll,'RD',year=year,month=month)
@@ -647,12 +687,16 @@ def interfaceMonth(dfAll,dfWind,savePath):
     
     #Maping tmax event button
     def clicked(mpTmax):
-        year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
-        month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
-        region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
-        adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
-        adm3 = districtNeeded.outputs[0]['text'].strip() 
-    
+        try:
+            year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
+            month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
+            region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
+            adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
+            adm3 = districtNeeded.outputs[0]['text'].strip() 
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
+        
         mapMonTMPMAX = dFu.locData(dfAll,'TMPMAX',year,month)
         
         kriFigs = mFu.kriMap(mapMonTMPMAX,region,savePath=savePath)
@@ -670,12 +714,16 @@ def interfaceMonth(dfAll,dfWind,savePath):
     #Maping tmin event button
     def clicked(mpTmin):
         
-        year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
-        month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
-        region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
-        adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
-        adm3 = districtNeeded.outputs[0]['text'].strip() 
-    
+        try:
+            year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
+            month = int(monthNeeded.outputs[0]['text'].strip())              # Display selected month
+            region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
+            adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
+            adm3 = districtNeeded.outputs[0]['text'].strip() 
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
+        
         mapMonTMPMIN = dFu.locData(dfAll,'TMPMIN',year,month)
                                    
         kriFigs = mFu.kriMap(mapMonTMPMIN,region,savePath=savePath)
@@ -949,9 +997,13 @@ def interfaceSeason(dfAll,dfWind,savePath):
     #check_boxGrid
     
     def clicked(pltRf):    
-        stationName=stationNameWid.outputs[0]['text'].strip()           # Display selected station
-        year = int(yearNeeded.outputs[0]['text'].strip())               # Display selected year
-        season = seasonNeeded.outputs[0]['text'].strip()                # Display selected season
+        try:
+            stationName=stationNameWid.outputs[0]['text'].strip()           # Display selected station
+            year = int(yearNeeded.outputs[0]['text'].strip())               # Display selected year
+            season = seasonNeeded.outputs[0]['text'].strip()                # Display selected season
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
         
         dfOne = dFu.locSelect(dfAll,stationName)
        
@@ -973,8 +1025,12 @@ def interfaceSeason(dfAll,dfWind,savePath):
     #Plotting tmax event button
     def clicked(pltTmax):
         # Display selected station and year
-        stationName=stationNameWid.outputs[0]['text'].strip()
-        year = int(yearNeeded.outputs[0]['text'].strip())  
+        try:
+            stationName=stationNameWid.outputs[0]['text'].strip()
+            year = int(yearNeeded.outputs[0]['text'].strip())  
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
         
         dfOne = dFu.locSelect(dfAll,stationName)                           # Display selected station   
         seasonTMAX = dFu.timeData(dfOne,'TMPMAX','season')                 # Display selected element
@@ -990,8 +1046,12 @@ def interfaceSeason(dfAll,dfWind,savePath):
     #Plotting tmin event button
     def clicked(pltTmin):
         # Display selected station and year
-        stationName=stationNameWid.outputs[0]['text'].strip()
-        year = int(yearNeeded.outputs[0]['text'].strip())  
+        try:
+            stationName=stationNameWid.outputs[0]['text'].strip()
+            year = int(yearNeeded.outputs[0]['text'].strip())  
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
         
         dfOne = dFu.locSelect(dfAll,stationName)                           # Display selected station   
         seasonTMIN = dFu.timeData(dfOne,'TMPMIN','season')                 # Display selected element
@@ -1010,10 +1070,14 @@ def interfaceSeason(dfAll,dfWind,savePath):
     #Plotting Windrose event button
     def clicked(pltWinrs):
         # Display selected station
-        stationName=stationNameWid.outputs[0]['text'].strip()
-        year = int(yearNeeded.outputs[0]['text'].strip())               # Display selected year
-        season = seasonNeeded.outputs[0]['text'].strip()                 # Display selected season
-        
+        try:
+            stationName=stationNameWid.outputs[0]['text'].strip()
+            year = int(yearNeeded.outputs[0]['text'].strip())               # Display selected year
+            season = seasonNeeded.outputs[0]['text'].strip()                 # Display selected season
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return        
+
         df = dfWind
     
         wind = df[df.EG_EL == 'WINSPD'].drop_duplicates(subset=['STN_Name','dateTime']).set_index(['STN_Name','dateTime']).rename(columns={'value':'WINSPD'}).get(['season','seasonyear','dk','WINSPD'])
@@ -1031,11 +1095,15 @@ def interfaceSeason(dfAll,dfWind,savePath):
     #==================================================================
     #Maping rf event button
     def clicked(mpRf):
-        year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
-        season = seasonNeeded.outputs[0]['text'].strip()                 # Display selected season
-        region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
-        adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
-        adm3 = districtNeeded.outputs[0]['text'].strip() 
+        try:
+            year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
+            season = seasonNeeded.outputs[0]['text'].strip()                 # Display selected season
+            region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
+            adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
+            adm3 = districtNeeded.outputs[0]['text'].strip() 
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
         
         mapSsnRF = dFu.locData(dfAll,'PRECIP',year,season)
         
@@ -1056,11 +1124,15 @@ def interfaceSeason(dfAll,dfWind,savePath):
     
     #Maping tmax event button
     def clicked(mpTmax):
-        year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
-        season = seasonNeeded.outputs[0]['text'].strip()                 # Display selected season
-        region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
-        adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
-        adm3 = districtNeeded.outputs[0]['text'].strip() 
+        try:
+            year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
+            season = seasonNeeded.outputs[0]['text'].strip()                 # Display selected season
+            region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
+            adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
+            adm3 = districtNeeded.outputs[0]['text'].strip() 
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
             
         mapSsnTMPMAX = dFu.locData(dfAll,'TMPMAX',year,season)
         
@@ -1078,11 +1150,15 @@ def interfaceSeason(dfAll,dfWind,savePath):
     
     #Maping tmin event button
     def clicked(mpTmin):
-        year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
-        season = seasonNeeded.outputs[0]['text'].strip()                 # Display selected season
-        region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
-        adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
-        adm3 = districtNeeded.outputs[0]['text'].strip() 
+        try:
+            year = int(yearNeeded.outputs[0]['text'].strip())                # Display selected year  
+            season = seasonNeeded.outputs[0]['text'].strip()                 # Display selected season
+            region = regionNeeded.outputs[0]['text'].strip()                 # Display selected region
+            adm2 = zoneNeeded.outputs[0]['text'].strip()                     # Display selected zone
+            adm3 = districtNeeded.outputs[0]['text'].strip() 
+        except:
+            print('Make selections in all drop-down menus before plotting.')
+            return
             
         mapSsnTMPMIN = dFu.locData(dfAll,'TMPMIN',year,season)
         
