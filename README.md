@@ -11,6 +11,10 @@ If git is installed, you can install pycamtETinterface with:
 ```
 pip install git+https://github.com/jddingemanse/pycamtETinterface.git
 ```
+pycamtETinterface is strictly meant for usage in jupyter notebook, to provide an interface that operates functions of the package pycamtET. In other words, to work with pycamtETinterface, you must also install the package pycamtET:
+```
+pip install git+https://github.com/jddingemanse/pycamtET.git
+```
 
 ## Use example
 To use the interface for dekadal analysis, in a jupyter-notebook you must:
